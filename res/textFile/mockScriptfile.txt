@@ -1,0 +1,5 @@
+load res/assets/snakes.ppm snakes-mock
+rgb-split snakes snakes-red snakes-green snakes-blue
+rgb-combine snakes-tint snakes-red snakes-green snakes-blue
+brighten -50 snakes snakes-darken
+save res/assets/snakes-mock.ppm snakes-mock

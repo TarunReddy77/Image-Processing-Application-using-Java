@@ -1,0 +1,16 @@
+load res/assets/snakes.ppm snakes-ppm
+load res/assets/snakes.png snakes-png
+load res/assets/snakes.jpg snakes-jpg
+load res/assets/snakes.bmp snakes-bmp
+save res/assets/snakes-ppm-png.png snakes-ppm
+save res/assets/snakes-ppm-jpg.jpg snakes-ppm
+save res/assets/snakes-ppm-bmp.bmp snakes-ppm
+save res/assets/snakes-png-ppm.ppm snakes-png
+save res/assets/snakes-png-jpg.jpg snakes-png
+save res/assets/snakes-png-bmp.bmp snakes-png
+save res/assets/snakes-jpg-ppm.ppm snakes-jpg
+save res/assets/snakes-jpg-png.png snakes-jpg
+save res/assets/snakes-jpg-bmp.bmp snakes-jpg
+save res/assets/snakes-bmp-ppm.ppm snakes-bmp
+save res/assets/snakes-bmp-png.png snakes-bmp
+save res/assets/snakes-bmp-jpg.jpg snakes-bmp

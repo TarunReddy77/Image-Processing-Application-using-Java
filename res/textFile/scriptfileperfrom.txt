@@ -1,0 +1,7 @@
+load res/assets/snakes.ppm snakes
+rgb-split snakes snakes-red snakes-green snakes-blue
+rgb-combine snakes-tint snakes-red snakes-green snakes-blue
+save res/assets/snakes-tint.ppm snakes-tint
+brighten -50 snakes snakes-darken
+save res/assets/snakes-darken.ppm snakes-darken
+run res/textFile/runscriptinsidescript.txt

@@ -1,0 +1,38 @@
+load assets/snakes.ppm snakes-ppm
+load assets/snakes.png snakes-png
+load assets/snakes.jpg snakes-jpg
+load assets/snakes.bmp snakes-bmp
+rgb-split snakes-ppm snakes-red snakes-green snakes-blue
+save assets/snakes-green-split-png.png snakes-green
+rgb-combine snakes-tint snakes-red snakes-green snakes-blue
+save assets/snakes-tint-jpg.jpg snakes-tint
+brighten 50 snakes-ppm snakes-brighter
+save assets/snakes-brighter-bmp.bmp snakes-brighter
+brighten -50 snakes-ppm snakes-darken
+save assets/snakes-darken-bmp.bmp snakes-darken
+greyscale value-component snakes-png snakes-value-greyscale
+save assets/snakes-value-greyscale-ppm.ppm snakes-value-greyscale
+greyscale luma-component snakes-png snakes-luma-greyscale
+save assets/snakes-luma-greyscale-jpg.jpg snakes-luma-greyscale
+greyscale intensity-component snakes-png snakes-intensity-greyscale
+save assets/snakes-intensity-greyscale-bmp.bmp snakes-intensity-greyscale
+greyscale red-component snakes-jpg snakes-red-greyscale
+save assets/snakes-red-greyscale-ppm.ppm snakes-red-greyscale
+greyscale green-component snakes-jpg snakes-green-greyscale
+save assets/snakes-green-greyscale-png.png snakes-green-greyscale
+greyscale blue-component snakes-jpg snakes-blue-greyscale
+save assets/snakes-blue-greyscale-bmp.bmp snakes-blue-greyscale
+horizontal-flip snakes-bmp snakes-horizontal
+save assets/snakes-horizontal-ppm.ppm snakes-horizontal
+vertical-flip snakes-horizontal snakes-horizontal-vertical
+save assets/snakes-horizontal-vertical-png.png snakes-horizontal-vertical
+vertical-flip snakes-bmp snakes-vertical
+save assets/snakes-vertical-jpg.jpg snakes-vertical
+blur snakes-ppm snakes-blur
+save assets/snakes-blur-ppm.ppm snakes-blur
+sharpen snakes-png snakes-sharpen
+save assets/snakes-sharpen-png.png snakes-sharpen
+sepia snakes-jpg snakes-sepia
+save assets/snakes-sepia-jpg.jpg snakes-sepia
+dither snakes-bmp snakes-dither
+save assets/snakes-dither-bpm.bmp snakes-dither
