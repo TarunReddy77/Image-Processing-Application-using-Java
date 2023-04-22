@@ -12,6 +12,7 @@
     - `Color Transform` : Have two sub-operation to transform the image to `Greyscale` and `sepia`.
     - `Filter` : Have two sub-operation to filter the image to `Blur` and `Sharpen`.
     - `Dither` : Have direct operation to perform dither to image.
+    - `Mosaic` : 
     - `Brightness` : Have two sub-operation to `bright` or `darken` the image.
     - `Split` : Have operation to split the image into three component(red, green, and blue).
     - `Combine` : Have operation to upload three image, which get directly combine to one after
