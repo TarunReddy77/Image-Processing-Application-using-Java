@@ -42,7 +42,8 @@ public class Controller extends ImageProcessingController implements IController
    *
    * @param command a string containing the command to be executed on the image
    */
-  void performAction(String command) {
+  @Override
+  public void performAction(String command) {
     this.imageName = String.valueOf(imageModal.hashCode());
     super.in = new StringReader(command + " " + this.imageName + " " + this.imageName);
     actionPerform();

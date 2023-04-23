@@ -1,6 +1,7 @@
 package view;
 
-import control.ExtensibleController;
+import control.ExtendedController;
+import control.IController;
 
 /**
  * The ImageView interface is responsible for defining the methods that must be implemented by any
@@ -13,7 +14,7 @@ public interface ImageView {
    *
    * @param controller the controller instance to use
    */
-  void addFeatures(ExtensibleController controller);
+  void addFeatures(IController controller);
 
   /**
    * Loads the image with the given name into the view.

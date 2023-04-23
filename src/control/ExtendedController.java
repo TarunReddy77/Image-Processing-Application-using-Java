@@ -1,11 +1,11 @@
 package control;
 
-public interface ExtensibleController extends IController{
+public interface ExtendedController extends IController{
 
   /**
    * Adjusts the brightness of the loaded image.
    *
    * @param seeds the value to adjust brightness by
    */
-  void mosckImage(int seeds);
+  void mosaicImage(int seeds);
 }

@@ -3,7 +3,7 @@ package control;
 import model.imagemodel.ImageModal;
 import view.ImageView;
 
-public class ExtensibleControllerImpl extends Controller implements ExtensibleController{
+public class ExtendedControllerImpl extends Controller implements ExtendedController {
 
   /**
    * Creates a new Controller instance with the given ImageModal and ImageView.
@@ -11,12 +11,12 @@ public class ExtensibleControllerImpl extends Controller implements ExtensibleCo
    * @param imageModal the ImageModal instance to use
    * @param imageView  the ImageView instance to use
    */
-  public ExtensibleControllerImpl(ImageModal imageModal, ImageView imageView) {
+  public ExtendedControllerImpl(ImageModal imageModal, ImageView imageView) {
     super(imageModal, imageView);
   }
 
   @Override
-  public void mosckImage(int seeds) {
+  public void mosaicImage(int seeds) {
     performAction("mosaic " + seeds);
   }
 }

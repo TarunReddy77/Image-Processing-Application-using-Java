@@ -1,6 +1,6 @@
 package view;
 
-import control.ExtensibleController;
+import control.ExtendedController;
 import control.IController;
 import core.usecases.GetImageDetails;
 import core.utils.CreateHistogram;
@@ -39,8 +39,8 @@ public class JFrameView extends JFrame implements ImageView {
 
   private final ReadModel readModel;
   private final JLabel[] defaultLabel;
-  private final CustomButton[] operationButtons;
-  private final CustomSubButton[] subOperationButtons;
+  protected final CustomButton[] operationButtons;
+  protected final CustomSubButton[] subOperationButtons;
   private final CustomButton[] operationSaveLoad;
   private final JLabel[] operationCombineImageLabel;
   private final String[] jPanelCombineScreenName = new String[]{
@@ -55,12 +55,11 @@ public class JFrameView extends JFrame implements ImageView {
   private final long[][] pixelChannelValue;
   private final JSpinner spinner;
   private int spinnerManualValue;
-  private final JPanel subOperationScreen;
+  protected final JPanel subOperationScreen;
 
   // For Operation Screen, Add buttons to operationScreen.
-  private final String[] operationButtonNames = new String[]{
-      "Flip", "Color Transform", "Filter", "Dither", "Brightness", "Split", "Combine", "GrayScale",
-      "Mosck"
+  protected String[] operationButtonNames = new String[]{
+      "Flip", "Color Transform", "Filter", "Dither", "Brightness", "Split", "Combine", "GrayScale"
   };
 
   // Sub Operation button
@@ -339,7 +338,7 @@ public class JFrameView extends JFrame implements ImageView {
   }
 
   @Override
-  public void addFeatures(ExtensibleController controller) {
+  public void addFeatures(IController controller) {
 
     // Load.
     operationSaveLoad[0].addActionListener(e -> {
@@ -521,7 +520,7 @@ public class JFrameView extends JFrame implements ImageView {
     subOperationButtons[18].addActionListener(e -> controller.brightnessImage(spinnerManualValue));
     subOperationButtons[19].addActionListener(e -> controller.brightnessImage(-spinnerManualValue));
 
-    subOperationButtons[21].addActionListener((e -> controller.mosckImage(100)));
+//    subOperationButtons[21].addActionListener((e -> controller.mosaicImage(100)));
 
 
   }
@@ -618,7 +617,7 @@ public class JFrameView extends JFrame implements ImageView {
    * @param screensVisible    An array of booleans representing whether the different screens should
    *                          be visible (true) or hidden (false).
    */
-  private void setVisibility(int[] visibleSubButtons, boolean[] hiddenLabels,
+  protected void setVisibility(int[] visibleSubButtons, boolean[] hiddenLabels,
       boolean[] screensVisible, boolean[] spinnerVisibility) {
     // default set all invisible
     for (CustomSubButton subOperationButton : subOperationButtons) {

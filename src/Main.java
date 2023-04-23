@@ -1,5 +1,5 @@
-import control.ExtensibleController;
-import control.ExtensibleControllerImpl;
+import control.ExtendedController;
+import control.ExtendedControllerImpl;
 import control.ImageController;
 import control.ImageProcessingController;
 import core.utils.ReadScriptFile;
@@ -47,7 +47,7 @@ public class Main {
         ReadModel readModel = new ImageReadModel(imageProcess);
         ImageView imageView = new JFrameView(readModel);
 
-        ExtensibleController controller = new ExtensibleControllerImpl(imageProcess, imageView);
+        ExtendedController controller = new ExtendedControllerImpl(imageProcess, imageView);
         controller.setView();
       }
     } catch (IOException | ArrayIndexOutOfBoundsException ignored) {
