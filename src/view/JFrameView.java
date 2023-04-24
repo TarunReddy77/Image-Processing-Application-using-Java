@@ -375,6 +375,7 @@ public class JFrameView extends JFrame implements ImageView {
     // Flip
     operationButtons[0].addActionListener(e -> {
       subOperationScreen.setBorder(BorderFactory.createTitledBorder("FLIP OPERATION"));
+      mosaicSpinner.setVisible(false);
       setVisibility(
           new int[]{0, 1}, // subOperationButtons to be visible
           new boolean[]{false, false}, // defaultLabel to be visible
@@ -385,6 +386,7 @@ public class JFrameView extends JFrame implements ImageView {
     // Color Transformation
     operationButtons[1].addActionListener(e -> {
       subOperationScreen.setBorder(BorderFactory.createTitledBorder("COLOR TRANSFER OPERATION"));
+      mosaicSpinner.setVisible(false);
       setVisibility(
           new int[]{2, 3}, // subOperationButtons to be visible
           new boolean[]{false, false}, // defaultLabel to be visible
@@ -395,6 +397,7 @@ public class JFrameView extends JFrame implements ImageView {
     // Filter
     operationButtons[2].addActionListener(e -> {
       subOperationScreen.setBorder(BorderFactory.createTitledBorder("FILTER OPERATION"));
+      mosaicSpinner.setVisible(false);
       setVisibility(
           new int[]{4, 5}, // subOperationButtons to be visible
           new boolean[]{false, false}, // defaultLabel to be visible
@@ -405,6 +408,7 @@ public class JFrameView extends JFrame implements ImageView {
     // Dither
     operationButtons[3].addActionListener(e -> {
       subOperationScreen.setBorder(BorderFactory.createTitledBorder("DITHER OPERATION"));
+      mosaicSpinner.setVisible(false);
       setVisibility(
           new int[0], // subOperationButtons to be visible
           new boolean[]{false, true}, // defaultLabel to be visible
@@ -415,6 +419,7 @@ public class JFrameView extends JFrame implements ImageView {
     // Brightness
     operationButtons[4].addActionListener(e -> {
       subOperationScreen.setBorder(BorderFactory.createTitledBorder("BRIGHTNESS OPERATION"));
+      mosaicSpinner.setVisible(false);
       setVisibility(
           new int[]{18, 19}, // subOperationButtons to be visible
           new boolean[]{false, false}, // defaultLabel to be visible
@@ -432,6 +437,7 @@ public class JFrameView extends JFrame implements ImageView {
     // Split
     operationButtons[5].addActionListener(e -> {
       subOperationScreen.setBorder(BorderFactory.createTitledBorder("SPLIT OPERATION"));
+      mosaicSpinner.setVisible(false);
       setVisibility(
           new int[]{15, 16, 17}, // subOperationButtons to be visible
           new boolean[]{false, false}, // defaultLabel to be visible
@@ -442,6 +448,7 @@ public class JFrameView extends JFrame implements ImageView {
     // Combine
     operationButtons[6].addActionListener(e -> {
       subOperationScreen.setBorder(BorderFactory.createTitledBorder("COMBINE OPERATION"));
+      mosaicSpinner.setVisible(false);
       setVisibility(
           new int[]{12, 13, 14}, // subOperationButtons to be visible
           new boolean[]{false, false}, // defaultLabel to be visible
@@ -452,6 +459,7 @@ public class JFrameView extends JFrame implements ImageView {
     // Greyscale
     operationButtons[7].addActionListener(e -> {
       subOperationScreen.setBorder(BorderFactory.createTitledBorder("GRAYSCALE OPERATION"));
+      mosaicSpinner.setVisible(false);
       setVisibility(
           new int[]{6, 7, 8, 9, 10, 11}, // subOperationButtons to be visible
           new boolean[]{false, false}, // defaultLabel to be visible
