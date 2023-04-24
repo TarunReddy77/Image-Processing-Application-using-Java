@@ -2,14 +2,14 @@ package model.imagemodel;
 
 import core.usecases.GetImageDetails;
 import java.io.IOException;
-import model.operationmodel.ImageMosck;
+import model.operationmodel.ImageMosaic;
 
 /**
  * Get the image from the controller and use it for operation to perform. And after complete store
  * the new image which is created by performing the operation. Image is in ppm format, will save the
  * new file as per the user request to make new file or overwrite it.
  */
-public interface ImageModal extends ImageMosck {
+public interface ImageModal extends ImageMosaic {
 
   /**
    * Save the image from the operation done on to make a new image.

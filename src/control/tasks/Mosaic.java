@@ -17,7 +17,6 @@ public class Mosaic implements PerformingImageTasks {
    * @param imageToUse    the name of original image.
    * @param newImageName  the name of new edited image.
    */
-
   public Mosaic(int numSeed, String imageToUse, String newImageName) {
     this.numSeed = numSeed;
     this.imageToUse = imageToUse;
@@ -26,8 +25,6 @@ public class Mosaic implements PerformingImageTasks {
 
   @Override
   public void startControl(ImageModal modelObj) throws IOException {
-    modelObj.imageMosck(this.numSeed, this.imageToUse, this.newImageName);
+    modelObj.imageMosaic(this.numSeed, this.imageToUse, this.newImageName);
   }
-
-
 }

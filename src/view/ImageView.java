@@ -1,6 +1,5 @@
 package view;
 
-import control.ExtendedController;
 import control.IController;
 
 /**

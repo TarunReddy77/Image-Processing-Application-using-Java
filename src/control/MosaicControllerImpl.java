@@ -1,9 +1,9 @@
 package control;
 
-public class MosaicableControllerImpl implements MosaicableController {
+public class MosaicControllerImpl implements MosaicController {
   private final IController controller;
 
-  public MosaicableControllerImpl(IController controller) {
+  public MosaicControllerImpl(IController controller) {
     this.controller = controller;
   }
 

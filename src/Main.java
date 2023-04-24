@@ -1,7 +1,8 @@
-import control.ExtendedController;
-import control.ExtendedControllerImpl;
+import control.Controller;
+import control.IController;
 import control.ImageController;
 import control.ImageProcessingController;
+import control.MosaicControllerImpl;
 import core.utils.ReadScriptFile;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -37,8 +38,7 @@ public class Main {
           controller = new ImageProcessingController(in, System.out);
           controller.imageControllerTask(imageProcess);
         } else if (args[0].equals("-text")) {
-          controller = new ImageProcessingController(new InputStreamReader(System.in),
-              System.out);
+          controller = new ImageProcessingController(new InputStreamReader(System.in), System.out);
           controller.imageControllerTask(imageProcess);
         } else {
           throw new IOException("Invalid parameter input passed!!!");
@@ -46,9 +46,9 @@ public class Main {
       } else {
         ReadModel readModel = new ImageReadModel(imageProcess);
         ImageView imageView = new JFrameView(readModel);
-
-        ExtendedController controller = new ExtendedControllerImpl(imageProcess, imageView);
-        controller.setView();
+        IController controller = new Controller(imageProcess, imageView);
+        IController mosaicableControllerImpl = new MosaicControllerImpl(controller);
+        mosaicableControllerImpl.setView();
       }
     } catch (IOException | ArrayIndexOutOfBoundsException ignored) {
     }

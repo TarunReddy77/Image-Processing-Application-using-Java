@@ -1,7 +1,7 @@
 package view;
 
-import control.ExtendedController;
 import control.IController;
+import control.MosaicControllerImpl;
 import core.usecases.GetImageDetails;
 import core.utils.CreateHistogram;
 import core.utils.CustomButton;
@@ -39,8 +39,8 @@ public class JFrameView extends JFrame implements ImageView {
 
   private final ReadModel readModel;
   private final JLabel[] defaultLabel;
-  protected final CustomButton[] operationButtons;
-  protected final CustomSubButton[] subOperationButtons;
+  private final CustomButton[] operationButtons;
+  private final CustomSubButton[] subOperationButtons;
   private final CustomButton[] operationSaveLoad;
   private final JLabel[] operationCombineImageLabel;
   private final String[] jPanelCombineScreenName = new String[]{
@@ -54,19 +54,20 @@ public class JFrameView extends JFrame implements ImageView {
   private final FileNameExtensionFilter filter;
   private final long[][] pixelChannelValue;
   private final JSpinner spinner;
+  private final JSpinner mosaicSpinner;
   private int spinnerManualValue;
-  protected final JPanel subOperationScreen;
+  private final JPanel subOperationScreen;
 
   // For Operation Screen, Add buttons to operationScreen.
-  protected String[] operationButtonNames = new String[]{
-      "Flip", "Color Transform", "Filter", "Dither", "Brightness", "Split", "Combine", "GrayScale"
+  private final String[] operationButtonNames = new String[]{
+      "Flip", "Color Transform", "Filter", "Dither", "Brightness", "Split", "Combine", "GrayScale", "Mosaic"
   };
 
   // Sub Operation button
   private final String[] subOperationButtonNames = new String[]{
       "Horizontal", "Vertical", "GrayScale", "Sepia", "Blur", "Sharp", "Intensity", "Luma",
       "Value", "Red", "Green", "Blue", "Image 1", "Image 2", "Image 3", "Red Component",
-      "Green Component", "Blue Component", "Increase", "Decrease", "Manual"
+      "Green Component", "Blue Component", "Increase", "Decrease", "Manual", "Mosaic"
   };
 
   /**
@@ -266,6 +267,13 @@ public class JFrameView extends JFrame implements ImageView {
     spinner.setUI(new CustomSpinnerUI());
     spinner.setToolTipText("Do Increment or Decrement after Selecting the Value");
 
+    mosaicSpinner = new JSpinner(new SpinnerNumberModel(100, 1, null, 1));
+    // set the preferred size of the spinner
+    mosaicSpinner.setPreferredSize(new Dimension(50, 25));
+    // apply a custom UI to the spinner
+    mosaicSpinner.setUI(new CustomSpinnerUI());
+    mosaicSpinner.setToolTipText("Do Increment or Decrement after Selecting the Value");
+
     subOperationButtons = new CustomSubButton[subOperationButtonNames.length];
     String[] operationSaveLoadName = new String[]{"Upload", "Save"};
     operationSaveLoad = new CustomButton[operationSaveLoadName.length];
@@ -290,9 +298,14 @@ public class JFrameView extends JFrame implements ImageView {
         "Select  to " + subOperationButtonNames[18] + " Brightness by " + spinnerManualValue);
     subOperationButtons[19].setToolTipText(
         "Select  to " + subOperationButtonNames[19] + " Brightness by " + spinnerManualValue);
+    // to add unique Tip Text for Manual Button.
+    subOperationButtons[21].setToolTipText(
+            "Select Mosaic to create a mosaic image");
 
     subOperationScreen.add(spinner, p);
+    subOperationScreen.add(mosaicSpinner, p);
     spinner.setVisible(false);
+    mosaicSpinner.setVisible(false);
 
     // For Upload Save Screen
     GridBagConstraints u = new GridBagConstraints();
@@ -449,11 +462,12 @@ public class JFrameView extends JFrame implements ImageView {
     // Mosaic
     operationButtons[8].addActionListener(e -> {
       subOperationScreen.setBorder(BorderFactory.createTitledBorder("MOSAIC OPERATION"));
+      mosaicSpinner.setVisible(true);
       setVisibility(
-          new int[]{}, // subOperationButtons to be visible
-          new boolean[]{false, false}, // defaultLabel to be visible
-          new boolean[]{true, false}, // image to be visible
-          new boolean[]{true, false}); // Spinner Visibility
+              new int[]{21}, // subOperationButtons to be visible
+              new boolean[]{false, false}, // defaultLabel to be visible
+              new boolean[]{true, false}, // image to be visible
+              new boolean[]{false, false}); // Spinner Visibility
     });
 
     // horizontal
@@ -520,9 +534,7 @@ public class JFrameView extends JFrame implements ImageView {
     subOperationButtons[18].addActionListener(e -> controller.brightnessImage(spinnerManualValue));
     subOperationButtons[19].addActionListener(e -> controller.brightnessImage(-spinnerManualValue));
 
-//    subOperationButtons[21].addActionListener((e -> controller.mosaicImage(100)));
-
-
+    subOperationButtons[21].addActionListener((e -> new MosaicControllerImpl(controller).mosaicImage((Integer) mosaicSpinner.getValue())));
   }
 
   @Override
@@ -617,7 +629,7 @@ public class JFrameView extends JFrame implements ImageView {
    * @param screensVisible    An array of booleans representing whether the different screens should
    *                          be visible (true) or hidden (false).
    */
-  protected void setVisibility(int[] visibleSubButtons, boolean[] hiddenLabels,
+  private void setVisibility(int[] visibleSubButtons, boolean[] hiddenLabels,
       boolean[] screensVisible, boolean[] spinnerVisibility) {
     // default set all invisible
     for (CustomSubButton subOperationButton : subOperationButtons) {
