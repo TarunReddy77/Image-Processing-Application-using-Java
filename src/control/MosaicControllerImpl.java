@@ -1,8 +1,19 @@
 package control;
 
+/**
+ * This class is a decorator around the Controller class which adds the functionality to
+ * perform the mosaicking operation to the decorated class. The decorator's interface extends the
+ * interface of the decorated class and is composed of an object of the decorated class. For all
+ * other functionality apart from mosaicking, it calls the methods of the decorated class's object.
+ */
 public class MosaicControllerImpl implements MosaicController {
   private final IController controller;
 
+  /**
+   * This is the constructor which takes an object of IController and decorates it with this class.
+   *
+   * @param controller the controller class to be decorated
+   */
   public MosaicControllerImpl(IController controller) {
     this.controller = controller;
   }

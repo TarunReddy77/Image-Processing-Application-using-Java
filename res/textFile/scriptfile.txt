@@ -36,3 +36,5 @@ sepia snakes snakes-sepia
 save res/assets/snakes-sepia.ppm snakes-sepia
 dither snakes snakes-dither
 save res/assets/snakes-dither.ppm snakes-dither
+mosaic 50 snakes snakes-mosaic
+save res/assets/snakes-mosaic.ppm snakes-mosaic

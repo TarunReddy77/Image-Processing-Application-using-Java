@@ -35,13 +35,6 @@ public class Controller extends ImageProcessingController implements IController
     totalSplitImage = new HashMap<>();
   }
 
-  /**
-   * Executes a series of actions on the image based on the command passed as a parameter. If an
-   * error is found during the action execution, displays a pop-up message with the error message
-   * and clears the screen and the list of split images.
-   *
-   * @param command a string containing the command to be executed on the image
-   */
   @Override
   public void performAction(String command) {
     this.imageName = String.valueOf(imageModal.hashCode());

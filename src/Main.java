@@ -47,8 +47,8 @@ public class Main {
         ReadModel readModel = new ImageReadModel(imageProcess);
         ImageView imageView = new JFrameView(readModel);
         IController controller = new Controller(imageProcess, imageView);
-        IController mosaicableControllerImpl = new MosaicControllerImpl(controller);
-        mosaicableControllerImpl.setView();
+        IController mosaicController = new MosaicControllerImpl(controller);
+        mosaicController.setView();
       }
     } catch (IOException | ArrayIndexOutOfBoundsException ignored) {
     }

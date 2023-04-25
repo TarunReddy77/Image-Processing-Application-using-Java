@@ -8,6 +8,9 @@ import core.usecases.ImageDetails;
 import core.usecases.ImagePixel;
 import core.usecases.Pixel;
 
+/**
+ * This class provides the implementation for the mosaicking operation to be performed on an image.
+ */
 public class ImageMosaicImpl extends ImageFilters implements ImageMosaic {
 
   @Override
@@ -18,7 +21,6 @@ public class ImageMosaicImpl extends ImageFilters implements ImageMosaic {
     int width = imageData.getWidth();
     int maxValue = imageData.getMaxValue();
 
-    // Generate random seed locations
     Random random = new Random();
     int[][] seedLocations = new int[numSeeds][2];
     for (int i = 0; i < numSeeds; i++) {
@@ -26,55 +28,52 @@ public class ImageMosaicImpl extends ImageFilters implements ImageMosaic {
       seedLocations[i][1] = random.nextInt(width);
     }
 
-    // Assign each pixel to its closest seed
     int[][] clusterLabels = new int[height][width];
-    for (int y = 0; y < height; y++) {
-      for (int x = 0; x < width; x++) {
+    for (int h = 0; h < height; h++) {
+      for (int w = 0; w < width; w++) {
         double minDistance = Double.MAX_VALUE;
         int minIndex = -1;
         for (int i = 0; i < numSeeds; i++) {
-          double distance = Math.sqrt(Math.pow(y - seedLocations[i][0], 2) + Math.pow(x - seedLocations[i][1], 2));
+          double distance = Math.sqrt(Math.pow(h - seedLocations[i][0], 2) + Math.pow(w - seedLocations[i][1], 2));
           if (distance < minDistance) {
             minDistance = distance;
             minIndex = i;
           }
         }
-        clusterLabels[y][x] = minIndex;
+        clusterLabels[h][w] = minIndex;
       }
     }
 
-    // Calculate the average color for each cluster
     int[][] clusterColors = new int[numSeeds][3];
     for (int i = 0; i < numSeeds; i++) {
       int count = 0;
-      int sumR = 0, sumG = 0, sumB = 0;
-      for (int y = 0; y < height; y++) {
-        for (int x = 0; x < width; x++) {
-          if (clusterLabels[y][x] == i) {
-            Pixel pixel = imageData.getPixelValue(y, x);
-            sumR += pixel.getRed();
-            sumG += pixel.getGreen();
-            sumB += pixel.getBlue();
+      int redTotal = 0, greenTotal = 0, blueTotal = 0;
+      for (int h = 0; h < height; h++) {
+        for (int w = 0; w < width; w++) {
+          if (clusterLabels[h][w] == i) {
+            Pixel pixel = imageData.getPixelValue(h, w);
+            redTotal += pixel.getRed();
+            greenTotal += pixel.getGreen();
+            blueTotal += pixel.getBlue();
             count++;
           }
         }
       }
       if (count > 0) {
-        clusterColors[i][0] = sumR / count;
-        clusterColors[i][1] = sumG / count;
-        clusterColors[i][2] = sumB / count;
+        clusterColors[i][0] = redTotal / count;
+        clusterColors[i][1] = greenTotal / count;
+        clusterColors[i][2] = blueTotal / count;
       }
     }
 
-    // Replace each pixel with the average color of its cluster
     Pixel[][] newPixelMatrix = new ImagePixel[height][width];
-    for (int y = 0; y < height; y++) {
-      for (int x = 0; x < width; x++) {
-        int clusterIndex = clusterLabels[y][x];
+    for (int h = 0; h < height; h++) {
+      for (int w = 0; w < width; w++) {
+        int clusterIndex = clusterLabels[h][w];
         int red = clusterColors[clusterIndex][0];
         int green = clusterColors[clusterIndex][1];
         int blue = clusterColors[clusterIndex][2];
-        newPixelMatrix[y][x] = new ImagePixel(red, green, blue);
+        newPixelMatrix[h][w] = new ImagePixel(red, green, blue);
       }
     }
     imageDatas.put(newImageName, new ImageDetails(width, height, maxValue, newPixelMatrix));

@@ -1,0 +1,9 @@
+There is only one controller interface and implementation containing operations from assignments 4
+and 5. So, it is likely that the existing interface and class were modified rather than extending.
+
+Lengthy code in view constructor with no clear variable names, making it difficult to modify.
+
+Java docs are unclear, variable names are not intuitive and also misspelled.
+
+Code containing logic outside MVC architecture, inside core package, that could have been tucked
+into utils package in either of MVC.
