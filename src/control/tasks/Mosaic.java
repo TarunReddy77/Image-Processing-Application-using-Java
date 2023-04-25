@@ -3,6 +3,7 @@ package control.tasks;
 import control.PerformingImageTasks;
 import java.io.IOException;
 import model.imagemodel.ImageModal;
+import model.operationmodel.ImageMosaic;
 
 public class Mosaic implements PerformingImageTasks {
 
@@ -25,6 +26,6 @@ public class Mosaic implements PerformingImageTasks {
 
   @Override
   public void startControl(ImageModal modelObj) throws IOException {
-    modelObj.imageMosaic(this.numSeed, this.imageToUse, this.newImageName);
+    ((ImageMosaic) modelObj).imageMosaic(this.numSeed, this.imageToUse, this.newImageName);
   }
 }

@@ -1,9 +1,60 @@
-There is only one controller interface and implementation containing operations from assignments 4
-and 5. So, it is likely that the existing interface and class were modified rather than extending.
+Cons
 
 Lengthy code in view constructor with no clear variable names, making it difficult to modify.
 
 Java docs are unclear, variable names are not intuitive and also misspelled.
 
 Code containing logic outside MVC architecture, inside core package, that could have been tucked
-into utils package in either of MVC.
+into utils package in either of MVC. For example, custom UI widget classes in core.usecases package
+have no usages except in view. So, they could have been put in view.
+
+Does not accept spaces in the path name in UI.
+
+Histogram does not refresh unless mouse is moved.
+
+Usage of private final fields in JFrameView would hinder its subclasses in the future from
+accessing and modifying them
+
+Usage of literal strings at multiple places in the program. Could have kept them in a separate
+Constants class.
+
+Usage of numbers for the view layout in the code. Makes it hard to change dimensions or layout
+design. Should have kept those in a constants file with reasonable variable names.
+
+Contains all buttons in an array so that we need to access them by their indices, making it
+difficult to track which button we are dealing with without the comments. Might have been better if
+put in a Hashmap.
+
+Usage of boolean arrays to manage visibility of components makes it harder to understand what it is
+doing, might have been better with enums.
+
+Made it not possible to use decorator for model as model has a few protected methods which needed to
+be accessed by the decorator. These methods were defined in the AbstractImageProcess class which is
+in a different package. Also these methods were not declared in the interface, so could not be used
+by the decorator.
+
+ImageFilters class has separate methods for every filtering and color transform operation. This
+means the class needs to be modified if more filters and transforms are added in the future. It
+could have been better to write a single general-purpose function which accepts any filter. This way
+ the code would be immune to new filters. All these filters could be stored in an enum.
+
+The command line interface isn't user-friendly. There is no prompt to tell the user when to type an
+instruction. If the instruction is mistyped, there is no helpful error message. Also, no feedback
+after an instruction is executed.
+
+
+Pros
+
+Simple, clean and resizeable UI
+
+Used command design pattern, so controller does not have to change if new features are added.
+However, the hashmap of commands is still in the controller. So, new commands need to be added to it
+.
+
+Good usage of utils classes to separate concerns calling classes.
+
+Custom UI widgets such as buttons and spinners created in separate classes.
+
+Usage of ReadOnly model for view to access image data directly from model -MVVM.
+
+Good use of packages to separate classes.

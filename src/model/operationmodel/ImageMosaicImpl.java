@@ -7,11 +7,12 @@ import core.usecases.GetImageDetails;
 import core.usecases.ImageDetails;
 import core.usecases.ImagePixel;
 import core.usecases.Pixel;
+import model.imagemodel.ImageProcess;
 
 /**
  * This class provides the implementation for the mosaicking operation to be performed on an image.
  */
-public class ImageMosaicImpl extends ImageFilters implements ImageMosaic {
+public class ImageMosaicImpl extends ImageProcess implements ImageMosaic {
 
   @Override
   public void imageMosaic(int numSeeds, String imageToUse, String newImageName) throws IOException {

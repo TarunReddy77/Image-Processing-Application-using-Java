@@ -12,6 +12,8 @@
     - `Color Transform` : Have two sub-operation to transform the image to `Greyscale` and `sepia`.
     - `Filter` : Have two sub-operation to filter the image to `Blur` and `Sharpen`.
     - `Dither` : Have direct operation to perform dither to image.
+    - `Mosaic` : Has direct operation to perform mosaicking on an image and a spinner to enter the 
+      number of seeds for mosaicking.
     - `Brightness` : Have two sub-operation to `bright` or `darken` the image.
     - `Split` : Have operation to split the image into three component(red, green, and blue).
     - `Combine` : Have operation to upload three image, which get directly combine to one after
@@ -152,6 +154,12 @@
       dither snakes-bmp snakes-dither
       save assets/snakes-dither-bpm.bmp snakes-dither
       ```
+    - Command to `mosaic` the file `snakes.ppm` using 100 seeds and save the file as `ppm` at the 
+      provided location : `mosaic num-of-seeds file-name new-file-name`
+      ```
+      mosaic 100 snakes-ppm snakes-mosaic
+      save assets/snakes-mosaic-ppm.ppm snakes-mosaic
+      ```
 
 - ### Run the script file in Project
     - Go-To `src`
@@ -266,4 +274,11 @@
       ```
       dither snakes-bmp snakes-dither
       save res/assets/snakes-dither-bpm.bmp snakes-dither
+      ```
+
+    - Command to `mosaic` the file `snakes.ppm` using 100 seeds and save the file as `ppm` at the
+      provided location.
+      ```
+      mosaic 100 snakes-ppm snakes-mosaic
+      save assets/snakes-mosaic-ppm.ppm snakes-mosaic
       ```

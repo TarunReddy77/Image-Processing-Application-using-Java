@@ -2,6 +2,8 @@ package model.imagemodel;
 
 import core.usecases.GetImageDetails;
 import java.io.IOException;
+
+import model.operationmodel.ImageFiltersModal;
 import model.operationmodel.ImageMosaic;
 
 /**
@@ -9,7 +11,7 @@ import model.operationmodel.ImageMosaic;
  * the new image which is created by performing the operation. Image is in ppm format, will save the
  * new file as per the user request to make new file or overwrite it.
  */
-public interface ImageModal extends ImageMosaic {
+public interface ImageModal extends ImageFiltersModal {
 
   /**
    * Save the image from the operation done on to make a new image.

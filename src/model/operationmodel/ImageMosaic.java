@@ -2,10 +2,12 @@ package model.operationmodel;
 
 import java.io.IOException;
 
+import model.imagemodel.ImageModal;
+
 /**
  * This interface declares the functionality to perform mosaic operation on an image.
  */
-public interface ImageMosaic extends ImageFiltersModal {
+public interface ImageMosaic extends ImageModal {
 
   /**
    * Method to perform mosaic operation on an image. An image can be "broken down" to look like a

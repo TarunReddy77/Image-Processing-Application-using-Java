@@ -11,6 +11,8 @@ import model.imagemodel.ImageModal;
 import model.imagemodel.ImageProcess;
 import model.imageviewmodel.ImageReadModel;
 import model.imageviewmodel.ReadModel;
+import model.operationmodel.ImageMosaic;
+import model.operationmodel.ImageMosaicImpl;
 import view.ImageView;
 import view.JFrameView;
 
@@ -29,29 +31,28 @@ public class Main {
    */
   public static void main(String[] args) {
     try {
-      ImageModal imageProcess = new ImageProcess();
+      ImageMosaic imageMosaic = new ImageMosaicImpl();
 
       if (args.length != 0) {
         ImageController controller;
         if (args[0].equals("-file")) {
           StringReader in = new ReadScriptFile(args[1]).getScriptData();
           controller = new ImageProcessingController(in, System.out);
-          controller.imageControllerTask(imageProcess);
+          controller.imageControllerTask(imageMosaic);
         } else if (args[0].equals("-text")) {
           controller = new ImageProcessingController(new InputStreamReader(System.in), System.out);
-          controller.imageControllerTask(imageProcess);
+          controller.imageControllerTask(imageMosaic);
         } else {
           throw new IOException("Invalid parameter input passed!!!");
         }
       } else {
-        ReadModel readModel = new ImageReadModel(imageProcess);
+        ReadModel readModel = new ImageReadModel(imageMosaic);
         ImageView imageView = new JFrameView(readModel);
-        IController controller = new Controller(imageProcess, imageView);
+        IController controller = new Controller(imageMosaic, imageView);
         IController mosaicController = new MosaicControllerImpl(controller);
         mosaicController.setView();
       }
     } catch (IOException | ArrayIndexOutOfBoundsException ignored) {
     }
   }
-
 }

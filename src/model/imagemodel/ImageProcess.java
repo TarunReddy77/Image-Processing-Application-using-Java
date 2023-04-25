@@ -2,13 +2,15 @@ package model.imagemodel;
 
 import core.usecases.GetImageDetails;
 import java.io.IOException;
+
+import model.operationmodel.ImageFilters;
 import model.operationmodel.ImageMosaicImpl;
 
 /**
  * Created ImageProcess class which perform main tasks related to image processing like loading and
  * saving the images.
  */
-public class ImageProcess extends ImageMosaicImpl implements ImageModal {
+public class ImageProcess extends ImageFilters implements ImageModal {
 
   /**
    * Constructs a ImageProcess to initiate image data.

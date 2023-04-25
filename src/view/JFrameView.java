@@ -267,6 +267,7 @@ public class JFrameView extends JFrame implements ImageView {
     spinner.setUI(new CustomSpinnerUI());
     spinner.setToolTipText("Do Increment or Decrement after Selecting the Value");
 
+    // spinner to select a value for the number of seeds for mosaicking
     mosaicSpinner = new JSpinner(new SpinnerNumberModel(100, 1, null, 1));
     // set the preferred size of the spinner
     mosaicSpinner.setPreferredSize(new Dimension(50, 25));
