@@ -1,60 +1,97 @@
 Cons
 
-Lengthy code in view constructor with no clear variable names, making it difficult to modify.
+Java docs are unclear, variable names are unintuitive and misspelled, making it hard to
+understand what information a variable contains or what functionality a method accomplishes.
 
-Java docs are unclear, variable names are not intuitive and also misspelled.
+The code contained in the JFrameView's constructor is very lengthy. It would have been better if it
+was split into multiple methods, each accomplishing a smaller task, like creating the panels and
+creating the buttons.
 
-Code containing logic outside MVC architecture, inside core package, that could have been tucked
-into utils package in either of MVC. For example, custom UI widget classes in core.usecases package
-have no usages except in view. So, they could have been put in view.
+There is a package called core which lies outside the model, view and controller packages. This
+would have made sense if classes in this package have usage in more than one of model, view and
+controller. However, classes to construct custom UI widgets such as buttons and spinners are also
+placed here which are used only in view package. Hence, it would have been better to place these classes
+inside a utils package inside the view itself.
 
-Does not accept spaces in the path name in UI.
-
-Histogram does not refresh unless mouse is moved.
-
-Usage of private final fields in JFrameView would hinder its subclasses in the future from
-accessing and modifying them
-
-Usage of literal strings at multiple places in the program. Could have kept them in a separate
-Constants class.
-
-Usage of numbers for the view layout in the code. Makes it hard to change dimensions or layout
-design. Should have kept those in a constants file with reasonable variable names.
-
-Contains all buttons in an array so that we need to access them by their indices, making it
-difficult to track which button we are dealing with without the comments. Might have been better if
-put in a Hashmap.
-
-Usage of boolean arrays to manage visibility of components makes it harder to understand what it is
-doing, might have been better with enums.
-
-Made it not possible to use decorator for model as model has a few protected methods which needed to
-be accessed by the decorator. These methods were defined in the AbstractImageProcess class which is
-in a different package. Also these methods were not declared in the interface, so could not be used
-by the decorator.
+JFrameView contains fields such as the array containing the button names, which are kept as private
+and final. Hence, if a new button is to be added by creating a new view class which extends this
+class, it would not be possible to add a new button from there.
 
 ImageFilters class has separate methods for every filtering and color transform operation. This
 means the class needs to be modified if more filters and transforms are added in the future. It
 could have been better to write a single general-purpose function which accepts any filter. This way
- the code would be immune to new filters. All these filters could be stored in an enum.
+ the code would have been immune to new filters. All these filters could be stored in an enum.
 
-The command line interface isn't user-friendly. There is no prompt to tell the user when to type an
-instruction. If the instruction is mistyped, there is no helpful error message. Also, no feedback
-after an instruction is executed.
+It was not possible to use a decorator for model as model class (ImageFilters) has a few protected
+methods which needed to be accessed by the decorator. These methods were defined in the
+AbstractImageProcess class which is in a different package. Thereby, even making these methods
+protected won't help. Only choice was to make them public but as they were not declared in the
+interface and were also helper methods, this wasn't a good practice.
 
+The command line interface to use the application isn't user-friendly. There is no prompt to tell
+the user when to type an instruction and if the instruction is mistyped, there is no helpful error
+message. Also, no feedback is provided after an instruction is executed.
+
+Usage of boolean arrays to manage visibility of components in the view makes it harder to understand
+which component's visibility is being toggled without the comments. This might have been better
+handled with enums, making it more readable.
+
+The JFrameView contains all operation buttons in an array which are accessed by their
+indices, making it difficult to track which button we are dealing with without the comments.
+This might have been better if the buttons were placed in a Hashmap.
+
+As new interfaces are added to the model with new functionality, they are being added above the
+ImageModal interface, making ImageModal extend the new interface. It would be better if the new
+interfaces are added at the bottom of this hierarchy, extending all previous interfaces.
+
+The numbers specifying the dimensions and colors of the view layout are hardcoded into the code.
+This makes it difficult to change a few simple things related to the look-and-feel of the UI. This
+could have been handled better by placing these numbers in a separate constants file, containing
+intuitive variable names.
+
+Similarly, literal strings are being used at multiple places in the code to display statements such
+as error messages. This would be problematic if same strings are used at multiple places and need
+to be changed at all these places.
+
+It would have been better if there were separate exception classes designed to handle a whole class
+of exceptions such as 'Invalid Syntax' or 'Image not found'.
+
+There is a bug in GUI which does not let the user upload images from a folder if the folder path
+contains a space. Also, the histogram in the GUI doesn't refresh automatically until the cursor is
+moved.
 
 Pros
 
-Simple, clean and resizeable UI
+The GUI is neatly organized and scales properly when resized. It is also intuitive with tooltips
+explaining what each button does.
 
-Used command design pattern, so controller does not have to change if new features are added.
-However, the hashmap of commands is still in the controller. So, new commands need to be added to it
-.
+The providers used the command design pattern, making the controller immune to changes from new
+functionality. However, the hashmap containing commands is still in the controller. So, new commands
+need to be added to it. This should have been placed in a different class.
 
-Good usage of utils classes to separate concerns calling classes.
+Utility classes and helper methods are extensively used, providing a nice separation of concern to
+the calling classes and methods.
 
-Custom UI widgets such as buttons and spinners created in separate classes.
+Custom UI widgets such as buttons and spinners created in separate classes, hence making the view
+code less bloated.
 
-Usage of ReadOnly model for view to access image data directly from model -MVVM.
+A ReadOnly model has been used for the view to access image data directly from model bypassing the
+controller, making use of Model View View Model design and this could make the view have a higher
+refresh rate.
 
-Good use of packages to separate classes.
+Similar classes have been bundled together into packages, making the code base organized.
+
+Interfaces have been designed for almost all major classes and interface types are used in
+constructors and method signatures, making the code robust to modifications as new classes could
+easily fit in the shoes of the classes they replace.
+
+As new functionality has been requested progressively, this has been tucked into new interfaces
+rather than modifying existing ones, obeying the open-closed principle.
+
+Interface segregation has been well-executed as only the functionality that client requires is
+exposed in the interfaces, hiding away all the internal details.
+
+Through the usage of MVC architecture, the providers did a very good job at separating concerns
+between the model, view and the controller and produced code with high cohesion and low coupling.
+
+Overall, the provided code works without any flaws, is well-designed and the GUI is user-friendly.

@@ -31,5 +31,4 @@ public class Load implements PerformingImageTasks {
     GetImageDetails imageDetails = new ReadImage(this.imagePath).getImageDetails();
     modelObj.loadImage(imageDetails, this.newImageName);
   }
-
 }

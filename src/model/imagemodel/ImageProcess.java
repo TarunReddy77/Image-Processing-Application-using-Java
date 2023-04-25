@@ -32,5 +32,4 @@ public class ImageProcess extends ImageFilters implements ImageModal {
   public void loadImage(GetImageDetails imageDetails, String imageName) {
     imageDatas.put(imageName, imageDetails);
   }
-
 }
