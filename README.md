@@ -1,11 +1,56 @@
 # Image Processing Application
 
-## Image Cite
+A desktop Java application for image processing with both GUI and CLI modes, designed with MVC and the Command Pattern. Supports reading and writing PPM, PNG, JPG, and BMP formats and includes operations like grayscale, blur, sharpen, dither, brightness, flip, split/combine RGB, and sepia.
 
-<hr>
+<p align="left">
+  <img alt="Java" src="https://img.shields.io/badge/Java-11+-red" />
+  <img alt="License" src="https://img.shields.io/badge/license-MIT-green" />
+</p>
 
-- Snake image:
-  "https://i1.wp.com/www.wildlifeinpixels.net/blog/wp-content/uploads/2013/12/72ppi.jpg"
+## Features
+
+- Flip (horizontal/vertical)
+- Grayscale (value, luma, intensity, red, green, blue)
+- Brightness (+/-)
+- Blur, Sharpen, Sepia, Dither
+- RGB Split and Combine
+- GUI with histogram visualization; scriptable CLI for batch operations
+
+## Quickstart
+
+Prerequisites: Java 11+, Maven 3.8+
+
+Build:
+```bash
+mvn -B -ntp clean package
+```
+
+Run GUI:
+```bash
+java -cp target/image-processing-application-1.0.0.jar Main
+```
+
+Run CLI with script:
+```bash
+java -jar target/image-processing-application-1.0.0.jar -file res/textFile/submitCommand.txt
+```
+
+Run CLI interactively:
+```bash
+java -jar target/image-processing-application-1.0.0.jar -text
+```
+
+## Screenshots
+
+- GUI with histogram
+
+<img alt="GUI" src="res/Image Processing Application Output Photo.png" width="720" />
+
+- High-level architecture
+
+<img alt="Architecture" src="res/diagram.png" width="720" />
+
+---
 
 ## Model
 
